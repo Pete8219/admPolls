@@ -6,6 +6,7 @@ const mongoose      = require('mongoose')
 require('dotenv').config()
 
 app.use(express.static(path.join(__dirname,'public')))
+app.use(express.json({extended: true}))
 
 async function start() {
     try{
@@ -24,5 +25,8 @@ async function start() {
 }
 
 start()
+
+
+app.use("/users", require('./api/routes/users'))
 
 module.exports = app
