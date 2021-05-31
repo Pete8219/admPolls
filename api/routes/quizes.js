@@ -3,7 +3,7 @@ const Quizes = require('../models/Quizes')
 const router        = express.Router()
 
 
-//select all quizes
+//Select all quizes
 
 router.get("/", async (req, res) => {
     try {
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     }
 })
 
-//Select quize by ID
+//Select quiz by ID
 router.get("/:id", async (req, res) => {
     try {
         const quiz = await Quizes.find( {_id: req.params.id})
@@ -36,7 +36,7 @@ router.get("/:id", async (req, res) => {
 })
 
 
-//Add new quize
+//Add new quiz
 router.post("/add", async (req,res) => {
     try {
         const quiz = new Quizes({ title: req.body.title })
@@ -51,7 +51,7 @@ router.post("/add", async (req,res) => {
     }
 })
 
-//Update selected quize
+//Update selected quiz
 
 router.patch("/:id", async (req, res) => {
     try {
@@ -75,7 +75,7 @@ router.patch("/:id", async (req, res) => {
     }
 })
 
-//Delete selected quize
+//Delete selected quiz
 
 router.delete("/:id", async (req, res) => {
     
