@@ -28,5 +28,7 @@ start()
 
 
 app.use("/users", require('./api/routes/users'))
+app.use("/quizes", require('./api/routes/quizes'))
+app.use("/questions", require('./api/routes/questions'))
 
 module.exports = app
