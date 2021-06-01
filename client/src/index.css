@@ -1,3 +1,6 @@
+html {
+  font-family: "Roboto Condensed" !important;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +8,43 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color:#fff;
+  font-family: "Roboto Condensed" !important;
+  font-size:16px;
+  color:#fff;
+  background: linear-gradient(180deg, #1bd6d8, #1581a9) !important;
+
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.container {
+  width:1280px;
+  margin:0 auto;
+  
+  min-height: 100vh;
+  padding:3rem;
+  color:#fff;
+}
+
+.header-content, .sub.header{
+  color: #fff;
+  font-family: "Roboto Condensed";
+}
+
+
+.ui.secondary.menu {
+  margin-bottom: 5em;
+}
+
+.ui.secondary.menu .item {
+  background-color: #fff !important;
+}
+
+.header {
+  font-family: "Roboto Condensed" !important;
 }

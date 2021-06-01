@@ -38,6 +38,7 @@ router.get("/:id", async (req, res) => {
 //Find all questions by QuizId
 
 router.get("/byQuize/:id", async (req, res) => {
+    
     try {
        const questions = await Questions.find({ quizeId: req.params.id})
        res.status(200).json(questions)     
