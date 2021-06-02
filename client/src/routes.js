@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, Redirect } from "react-router-dom"
+import { Switch, Route} from "react-router-dom"
 import { Quizes } from './pages/Quizes'
 import { QuizPage } from './pages/QuizPage'
 

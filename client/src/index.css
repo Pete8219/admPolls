@@ -48,3 +48,50 @@ code {
 .header {
   font-family: "Roboto Condensed" !important;
 }
+
+.answers__body {
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.answers {
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.answers ul  {
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  list-style: none;
+  width: 100%;
+  padding: 15px;
+  align-items: center;
+
+}
+
+.answers>ul li {
+  width:50%;
+  padding: 15px;
+  background-color: rgb(120, 55, 225);
+  border-radius: 10px;
+  font-size: 1.2em;
+  box-shadow: 10px 0 20px #107392;
+}
+
+.answers>ul li:hover {
+  background-color: rgb(130, 55, 206);
+  border:1px solid #fff;
+  transition-delay: 0.2s;
+}
+
+

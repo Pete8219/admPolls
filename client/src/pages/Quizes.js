@@ -33,7 +33,7 @@ export const Quizes = () => {
 
     return (
         <>
-            {quizes && <QuizesList quizes={quizes} clickHandler = {clickHandler}/>}
+            {!loading && quizes && <QuizesList quizes={quizes} clickHandler = {clickHandler}/>}
         </>
     )
 }

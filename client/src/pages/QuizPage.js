@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 
 
 
+
 export const QuizPage = () => {
     const history = useHistory()
     const {loading, request} = useHttp()
@@ -14,17 +15,43 @@ export const QuizPage = () => {
     
     
 
-    const [quiz, setQuiz] = useState()
-    
+    const [quiz, setQuiz] = useState([])
+    const [currentQuestion, setCurrentQuestion] = useState(0)
+    const [score, setScore] = useState(false)
+    const [answers, setAnswers] = useState([])
+    const selectedAnswer = answers
+    const final = {
+        quizId: quizData.id,
+        data: selectedAnswer
+    }
+
+
+    const saveAnswers = async () => {
+        try {
+            const fetched = await request(`/answers/add`, "POST", null, {})
+
+
+        } catch (error) {}
+
+    }
+
+    const clickHandler = (id,grade, e) => {
+        selectedAnswer.push({questionId: id, answerText:e.target.outerText, grade})
+        setAnswers(selectedAnswer)
+        setCurrentQuestion(currentQuestion + 1)
+        setScore(false)
+        
+
+        if(currentQuestion === quiz.length - 1) {
+            saveAnswers()
+        }
+    }
 
      if(!quizData) {
         history.push("/")
     } 
 
      useEffect(() => {
-        if(!quizData) {
-            return
-        }
 
         const fetchQuiz = async () => {
             try {
@@ -36,13 +63,19 @@ export const QuizPage = () => {
         }
 
         fetchQuiz()
-    }, [request, id])
+    }, [ request, id])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setScore(true)
+        },800)
+    })
 
 
 
     return (
         <>
-            {!loading && quiz && <Quiz data ={ quiz } title ={title}/> }
+            {!loading && quiz && <Quiz data ={ quiz } title ={title} clickHandler = {clickHandler} current= { currentQuestion } score={score}/> }
 
         </>
     )

@@ -1,37 +1,60 @@
 import React from 'react'
-import { Header, Card, Form } from 'semantic-ui-react'
+import { Header, Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { AnswerLoader } from '../components/Loader'
 
 
-export const Quiz = ({ data, title }) => {
-    console.log(data)
+export const Quiz = ({ data, title, current, score, clickHandler }) => {
     
     
     return (
+        
         <div>
-            <Header as ='h1' style={{color:"#fff"}}>Опрос на тему : {title}</Header>
-            {data.map((question, index) => {
-                const {answers, answerType} = question
-                console.log(answers)
-
-                return(
-                    <div>
-                    <Header as='h3'>Вопрос {index +1} из {data.length}. {question.title}</Header>
-                        <Card>
-                            <Card.Content>
-                                <Form>
-                                <Form.Group>    
-                                    <Form.Radio 
-                                        label='big'
-                                        value='sdfsdf'
-                                    />
-                                </Form.Group>
-                                </Form>
-                            </Card.Content>
-                        </Card>
-                    </div>    
-                )
+            <Header as ='h1' style={{color:"#fff", marginBottom: "2em"}}>Опрос на тему : {title}</Header>
+            {  !score  
+                ? <AnswerLoader/>
+                : ( current === data.length
+                    ? <div className = "answers__body">
+                                <Header as = 'h3' style={{color:"#fff"}}>Спасибо, что приняли участие в опросе </Header><br/>                                
+                                <Button color="green">
+                                    
+                                    <Link to ="/">
+                                        <span style={{color:"#fff"}}>На главную</span>
+    
+                                        </Link>
+                                    </Button>
+                            </div>
+                         : 
+                            <div className = "answers__body">
+                        
+                            
+                            <Header as='h3' style={{color:"#fff"}}>Вопрос <span className="answer__number" style={{fontSize:"1.5em"}}>{current +1}</span> из {data.length}. {data[current].title}</Header>
+                                <div className="answers" style={{width:"100%"}}>
+                                    <ul>
+                                    {data[current].answers.map((item, index) => {
+                                        return(
+                                            <li key={index} onClick ={ (e) => clickHandler(data[current]._id, item.grade, e)}>{item.answer}</li>
+                                        )
+                                    })}
+                                    </ul>
+                                  
+                                    
+                                </div>
+                            
+                        </div>    
+                        
+                ) 
+                        
                 
-            })}
+                
+                
+                }
+                
+            
+                    
+                
+                
+            
 
         </div>
     )
