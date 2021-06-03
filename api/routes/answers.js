@@ -26,10 +26,11 @@ router.get("/:id", async (req, res) => {
 //Add answers
 
 router.post("/add", async(req, res) => {
-    console.log(req.body)
-    //const { data } = req.body
+    
+    const { pollData } = req.body
+    
     try {
-        const answers = new Answers({quizId: req.body.quizId, answers: req.body.answers,  userId: req.body.userId})
+        const answers = new Answers({quizId: pollData.quizId, answers: pollData.data,  userId: pollData.userId})
         await answers.save()
         res.status(201).json({
             message: 'Ответы успешно добавлены'

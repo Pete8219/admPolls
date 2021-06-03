@@ -2,6 +2,8 @@ import React from 'react'
 import { Header, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { AnswerLoader } from '../components/Loader'
+import { HeaderPage } from './HeaderPage'
+import { Navbar } from './Navbar'
 
 
 export const Quiz = ({ data, title, current, score, clickHandler }) => {
@@ -9,7 +11,9 @@ export const Quiz = ({ data, title, current, score, clickHandler }) => {
     
     return (
         
-        <div>
+        <div className="container">
+            <HeaderPage />
+            <Navbar />
             <Header as ='h1' style={{color:"#fff", marginBottom: "2em"}}>Опрос на тему : {title}</Header>
             {  !score  
                 ? <AnswerLoader/>

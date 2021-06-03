@@ -1,11 +1,15 @@
 import React from 'react'
 import { Card, Button } from 'semantic-ui-react'
+import { HeaderPage } from './HeaderPage'
+import { Navbar } from './Navbar'
 
 export const QuizesList = ({quizes, clickHandler}) => {
 
 
     return (
-         <div>
+         <div className="container">
+             <HeaderPage />
+             <Navbar />
              <Card.Group itemsPerRow={2}>
              {quizes.map(quiz => {
                  return(

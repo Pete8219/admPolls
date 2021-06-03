@@ -12,6 +12,10 @@ const answersSchema = new mongoose.Schema( {
     },
     userId: {
         type: String
+    },
+    quizDate: {
+        type: Date,
+        default: new Date()
     }
 })
 

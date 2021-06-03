@@ -20,7 +20,7 @@ export const QuizPage = () => {
     const [score, setScore] = useState(false)
     const [answers, setAnswers] = useState([])
     const selectedAnswer = answers
-    const final = {
+    const pollData = {
         quizId: quizData.id,
         data: selectedAnswer
     }
@@ -28,7 +28,7 @@ export const QuizPage = () => {
 
     const saveAnswers = async () => {
         try {
-            const fetched = await request(`/answers/add`, "POST", null, {})
+            const fetched = await request(`/answers/add`, "POST", {pollData}, {})
 
 
         } catch (error) {}
