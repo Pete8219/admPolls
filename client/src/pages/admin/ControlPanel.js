@@ -1,11 +1,7 @@
 import React from 'react'
-import { Header } from 'semantic-ui-react'
 import styles from './ControlPanel.module.css'
 import { ControlPanelMenu } from './ControlPanelMenu'
 import { HeaderPanel } from './components/HeaderPanel'
-import { Content } from './components/Content'
-import { MainPage } from './pages/MainPage'
-import { QuizesList } from './components/QuizesList'
 import { useRoutes } from './adminRoutes'
 import { BrowserRouter as Router } from 'react-router-dom'
 

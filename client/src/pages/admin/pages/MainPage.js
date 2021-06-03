@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useHttp } from '../../../hooks/http.hook'
-import { useHistory } from 'react-router-dom'
+
 import { QuizesList } from '../components/QuizesList'
 
 export const MainPage = ()=> {
@@ -20,7 +20,7 @@ export const MainPage = ()=> {
 
         }
         fetchQuizes()
-    },[])
+    },[request])
 
     return (
         <>
