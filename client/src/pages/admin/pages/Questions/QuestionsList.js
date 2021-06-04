@@ -5,42 +5,61 @@ import { Quiz } from '../../components/Quiz'
 
 
 export const QuestionsList = () => {
-    const { id } = useParams()
-    const { loading, request } = useHttp()
     
+    const  { id }  = useParams()
+    
+    const { loading, request } = useHttp()
     const [quiz, setQuiz] = useState()
+    const [quizId, setQuizId] = useState(localStorage.getItem('QuizId') || '')
     const [questions, setQuestions] = useState([])
 
+    useEffect(() => {
+         if(localStorage.getItem('QuizId')){
+            console.log(localStorage.getItem('QuizId'))
+            setQuizId(localStorage.getItem('QuizId'))
+         }
+
+    },[])
 
     useEffect(() => {
+        localStorage.setItem('QuizId', id)
+        setQuizId(localStorage.getItem('QuizId'))
+    }, [quizId])
 
-        const fetchQuiz = async () => {
+
+
+   /*  console.log(quizId) */
+
+    useEffect(() => {
+         const fetchQuiz = async () => {
             try {
-                const fetched = await request(`/quizes/${id}`, "GET", null, {})
+                const fetched = await request(`/quizes/${quizId}`, "GET", null, {})
                 setQuiz(fetched)
-                console.log(fetched)
+                /* console.log(fetched) */
                 
             } catch (error) {}
  
         }
         fetchQuiz()
-    }, [request, id])
+    }, [request, quizId])
 
     useEffect(() => {
-        const fetchQuestions = async () => {
+         const fetchQuestions = async () => {
+           
             try {
-               const fetched = await request (`/questions/byQuize/${id}`, "GET", null, {})
+               const fetched = await request (`/questions/byQuize/${quizId}`, "GET", null, {})
                setQuestions(fetched) 
-               console.log(fetched)
+               /* console.log(fetched) */
             } catch (error) {}
         }
         fetchQuestions()
-    },[id, request])
+    },[request, quizId])
 
 
     return (
         <>
-        {!loading && quiz && questions && <Quiz quiz={quiz} questions={questions}/>}
+        
+         {!loading && quizId && quiz && questions && <Quiz quiz={quiz} questions={questions}/>}
         </>
     )
 }

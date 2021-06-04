@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { useHttp } from '../../../hooks/http.hook'
 import { Table, Header } from 'semantic-ui-react'
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 
 export const QuizesList = () => {
     const { request } = useHttp()
+    const history = useHistory()
     
 
     const [quizes, setQuizes] = useState([])
@@ -24,6 +26,12 @@ export const QuizesList = () => {
         fetchQuizes()
     },[request])
 
+
+    const clickHandler = (e, id) => {
+        
+        localStorage.setItem('QuizId', id)
+        /*  */
+    }
     
         return (
             <div>
@@ -32,7 +40,7 @@ export const QuizesList = () => {
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>#</Table.HeaderCell>
-                            <Table.HeaderCell>Наименование</Table.HeaderCell>
+                            <Table.HeaderCell>Опрос</Table.HeaderCell>
                             <Table.HeaderCell>Количество голосов</Table.HeaderCell>
                             <Table.HeaderCell>Начало</Table.HeaderCell>
                             <Table.HeaderCell>Окончание</Table.HeaderCell>
@@ -57,6 +65,7 @@ export const QuizesList = () => {
                     </Table.Body>
 
                 </Table>
+
 
             </div>
         )

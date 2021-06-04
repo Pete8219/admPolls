@@ -24,7 +24,7 @@ export const useRoutes = () => {
             <Route path="/admin/create" exact>
                 <CreateQuiz />
             </Route>
-            <Route path="/admin/editQuiz/:id" exact>
+            <Route path="/admin/editQuiz/:id">
                 <QuestionsList />
             </Route>
 
