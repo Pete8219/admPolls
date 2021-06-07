@@ -9,9 +9,12 @@ import { QuestionsList } from './pages/Questions/QuestionsList'
 
 
 
+
+
 export const useRoutes = () => {
     return (
         <Switch>
+
             <Route path="/admin" exact>
                 <QuizesList />
             </Route>
@@ -24,7 +27,7 @@ export const useRoutes = () => {
             <Route path="/admin/create" exact>
                 <CreateQuiz />
             </Route>
-            <Route path="/admin/editQuiz/:id">
+            <Route path="/admin/:id" exact>
                 <QuestionsList />
             </Route>
 

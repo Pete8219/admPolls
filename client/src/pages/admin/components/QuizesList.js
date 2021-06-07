@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { useHttp } from '../../../hooks/http.hook'
 import { Table, Header } from 'semantic-ui-react'
-import { useHistory } from 'react-router-dom'
+
 import { Link } from 'react-router-dom'
 
 
 export const QuizesList = () => {
     const { request } = useHttp()
-    const history = useHistory()
+    
     
 
     const [quizes, setQuizes] = useState([])
@@ -27,12 +27,7 @@ export const QuizesList = () => {
     },[request])
 
 
-    const clickHandler = (e, id) => {
-        
-        localStorage.setItem('QuizId', id)
-        /*  */
-    }
-    
+
         return (
             <div>
                 <Header as='h2'>Список опросов</Header>
@@ -50,15 +45,15 @@ export const QuizesList = () => {
                         
                         {quizes.map((quiz,index) => {
                             return(
-                                <>
+                                
                                 <Table.Row key = { index }>
                                 <Table.Cell>{index + 1}</Table.Cell>
-                                <Table.Cell><Link to={`/admin/editQuiz/${quiz._id}`}>{quiz.title}</Link></Table.Cell>
+                                <Table.Cell><Link to={`/admin/${quiz._id}`}>{quiz.title}</Link></Table.Cell>
                                 <Table.Cell>156</Table.Cell>
                                 <Table.Cell>{(new Date()).toLocaleString()}</Table.Cell>
                                 <Table.Cell>{(new Date()).toLocaleString()}</Table.Cell>
                                 </Table.Row>
-                                </>
+                                
                             )
                         })}
                         

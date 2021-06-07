@@ -6,16 +6,17 @@ import { Quiz } from '../../components/Quiz'
 
 export const QuestionsList = () => {
     
-    const  { id }  = useParams()
-    
+    const   { id }   = useParams()
+ 
     const { loading, request } = useHttp()
     const [quiz, setQuiz] = useState()
-    const [quizId, setQuizId] = useState(localStorage.getItem('QuizId') || '')
+    const [quizId, setQuizId] = useState(id)
     const [questions, setQuestions] = useState([])
 
-    useEffect(() => {
-         if(localStorage.getItem('QuizId')){
-            console.log(localStorage.getItem('QuizId'))
+  
+
+     useEffect(() => {
+        if(localStorage.getItem('QuizId')){
             setQuizId(localStorage.getItem('QuizId'))
          }
 
@@ -24,18 +25,14 @@ export const QuestionsList = () => {
     useEffect(() => {
         localStorage.setItem('QuizId', id)
         setQuizId(localStorage.getItem('QuizId'))
-    }, [quizId])
-
-
-
-   /*  console.log(quizId) */
+    }, [quizId, id])
 
     useEffect(() => {
          const fetchQuiz = async () => {
             try {
                 const fetched = await request(`/quizes/${quizId}`, "GET", null, {})
                 setQuiz(fetched)
-                /* console.log(fetched) */
+                
                 
             } catch (error) {}
  
@@ -49,12 +46,13 @@ export const QuestionsList = () => {
             try {
                const fetched = await request (`/questions/byQuize/${quizId}`, "GET", null, {})
                setQuestions(fetched) 
-               /* console.log(fetched) */
+               
             } catch (error) {}
         }
         fetchQuestions()
     },[request, quizId])
 
+   
 
     return (
         <>
