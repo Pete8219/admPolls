@@ -1,6 +1,7 @@
 import React from 'react'
 import { Header, Table, Input, Button, Form } from 'semantic-ui-react'
 import styles from '../ControlPanel.module.css'
+import { Link } from 'react-router-dom'
 
 
 export const Quiz = ({ quiz, questions }) => {
@@ -34,7 +35,7 @@ export const Quiz = ({ quiz, questions }) => {
                         return(
                             <Table.Row key = {question._id}>
                                 <Table.Cell>{index + 1}</Table.Cell>
-                                <Table.Cell>{question.title}</Table.Cell>
+                                <Table.Cell><Link to ={`/admin/question/${question._id}`}>{question.title}</Link></Table.Cell>
                                 <Table.Cell><Input  value='500'/></Table.Cell>
                             </Table.Row>
                         )

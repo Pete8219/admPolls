@@ -5,6 +5,7 @@ import { QuizListActive } from './Quizes/QuizListActive'
 import { HeldQuizes } from './Quizes/HeldQuizes'
 import { CreateQuiz } from './Quizes/CreateQuiz'
 import { QuestionsList } from './pages/Questions/QuestionsList'
+import { QuestionPage } from './pages/Questions/QuestionPage'
 
 
 
@@ -29,6 +30,9 @@ export const useRoutes = () => {
             </Route>
             <Route path="/admin/:id" exact>
                 <QuestionsList />
+            </Route>
+            <Route path="/admin/question/:id" exact>
+                <QuestionPage />
             </Route>
 
 

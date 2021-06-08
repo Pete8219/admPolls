@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom'
 
 export const QuizesList = () => {
     const { request } = useHttp()
-    
+    if(localStorage.getItem('QuizId')) {
+        localStorage.removeItem('QuizId')
+    }
     
 
     const [quizes, setQuizes] = useState([])
