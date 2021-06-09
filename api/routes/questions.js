@@ -76,6 +76,7 @@ router.post("/add", async (req, res) => {
 //Update selected question
 
 router.patch("/:id", async (req, res) => {
+    
     const updateOps = {}
 
     for (let key in req.body) {
