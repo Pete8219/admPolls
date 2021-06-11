@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useHttp } from '../../../hooks/http.hook'
 import { Table, Header } from 'semantic-ui-react'
-
 import { Link } from 'react-router-dom'
 
 
@@ -20,9 +19,7 @@ export const QuizesList = () => {
             try {
                 const fetched = await request("/quizes", "GET", null, {})
                 setQuizes(fetched)
-            } catch (error) {
-                
-            }
+            } catch (error) {}
 
         }
         fetchQuizes()

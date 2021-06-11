@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { useHttp } from '../../../hooks/http.hook'
-
 import { QuizesList } from '../components/QuizesList'
 
 export const MainPage = ()=> {
@@ -14,9 +13,7 @@ export const MainPage = ()=> {
             try {
                 const fetched = await request("/quizes", "GET", null, {})
                 setQuizes(fetched)
-            } catch (error) {
-                
-            }
+            } catch (error) {}
 
         }
         fetchQuizes()
@@ -27,7 +24,4 @@ export const MainPage = ()=> {
             { !loading && quizes && <QuizesList data = {quizes}/>}
         </>
     )
-
-
-
 }
