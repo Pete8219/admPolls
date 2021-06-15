@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useHttp } from '../../../../hooks/http.hook'
+import { useHttp } from '../../../hooks/http.hook'
 import { useParams } from 'react-router-dom'
-import { Answers } from '../../components/Answers'
+import { Answers } from '../components/answers/Answers'
+import { QuestionEdit } from '../components/questions/QuestionEdit'
 
-export const QuestionPage = () =>  {
+export const QuestionEditPage = () =>  {
 
     const { id }                            = useParams()
 
@@ -44,7 +45,7 @@ export const QuestionPage = () =>  {
 
     return (
         <>
-         {!loading && answers && <Answers data={answers}/>}
+         {!loading && answers && <QuestionEdit data={answers}/>}
         </>
     )
 }

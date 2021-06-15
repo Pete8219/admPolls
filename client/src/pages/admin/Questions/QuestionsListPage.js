@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useHttp } from '../../../../hooks/http.hook'
+import { useHttp } from '../../../hooks/http.hook'
 import { useParams } from 'react-router-dom'
-import { Quiz } from '../../components/Quiz'
+import { QuestionsList } from '../components/questions/QuestionsList'
 
 
-export const QuestionsList = () => {
+export const QuestionsListPage = () => {
     
     const   { id }   = useParams()
  
@@ -57,7 +57,7 @@ export const QuestionsList = () => {
     return (
         <>
         
-         {!loading && quizId && quiz && questions && <Quiz quiz={quiz} questions={questions}/>}
+         {!loading && quizId && quiz && questions && <QuestionsList quiz={quiz} questions={questions}/>}
         </>
     )
 }

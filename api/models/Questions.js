@@ -18,7 +18,16 @@ const questionsSchema = new mongoose.Schema({
     quizeId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Quizes'
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
+    isRequired: {
+        type: Boolean,
+        default: false
     }
+
 
 })
 

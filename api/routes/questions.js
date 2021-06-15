@@ -76,12 +76,15 @@ router.post("/add", async (req, res) => {
 //Update selected question
 
 router.patch("/:id", async (req, res) => {
-    
+    console.log(req.body) 
+    const {question} = req.body
     const updateOps = {}
 
     for (let key in req.body) {
         updateOps[key] = req.body[key]
     }
+
+    console.log(updateOps)
 
     try {
         await Questions.replaceOne({ _id: req.params.id}, {...updateOps}) 
