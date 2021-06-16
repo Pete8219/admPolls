@@ -12,7 +12,7 @@ export const QuestionEdit = ({ data }) => {
     const history = useHistory()
     const { request } = useHttp()
 
-    const {title: t, isActive: a, isRequired: r, answers} = data[0]
+    const {title: t, isActive: a, isRequired: r, answers, sortId: s} = data[0]
 
     answers.sort((a,b) => a.sortId - b.sortId)
 
@@ -20,9 +20,14 @@ export const QuestionEdit = ({ data }) => {
     const [isActive, setIsActive] = useState(a)
     const [isRequired, setIsRequired] = useState(r)
     const [ form, setForm ] = useState (answers)
+    const [sortId, setSortId] = useState(s)
 
     const changeTitle = (e) => {
         setTitle(e.target.value)
+    }
+
+    const changeSortId = (e) => {
+        setSortId(e.target.value)
     }
 
     const changeActive = () => {
@@ -59,6 +64,7 @@ export const QuestionEdit = ({ data }) => {
             answers: form,
             quizeId: quizId,
             id: questionId,
+            sortId,
             isActive,
             isRequired
         }
@@ -79,9 +85,11 @@ export const QuestionEdit = ({ data }) => {
         form: form || '',
         isActive,
         isRequired,
+        sortId: sortId || '',
         changeActive,
         changeRequired,
         changeTitle,
+        changeSortId,
         addHandler,
         changeHandler,
         cancelHandler,
