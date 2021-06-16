@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { Header, Button, Input, Table, Form } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import { Header} from 'semantic-ui-react'
 import { Answers } from '../../components/answers/Answers'
 import { QuestionHeader } from './QuestionHeader'
 import { useHistory} from 'react-router-dom'
-import styles from '../../ControlPanel.module.css'
+
 import { useHttp } from '../../../../hooks/http.hook'
 
 export const QuestionEdit = ({ data }) => {
 
-    console.log(data[0])
+    
     const history = useHistory()
     const { request } = useHttp()
 
@@ -52,7 +52,7 @@ export const QuestionEdit = ({ data }) => {
     const saveAnswers = async () => {
         const questionId = localStorage.getItem('qId')
         const quizId = localStorage.getItem('QuizId')
-        console.log(questionId)
+        
 
         const question = {
             title,
@@ -64,7 +64,7 @@ export const QuestionEdit = ({ data }) => {
         }
 
         try {
-            const fetched = await request(`/questions/${questionId}`, "PATCH", question, {})
+            await request(`/questions/${questionId}`, "PATCH", question, {})
             cancelHandler()
 
         } catch (error) {

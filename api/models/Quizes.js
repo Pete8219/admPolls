@@ -11,6 +11,18 @@ const quizesSchema = new mongoose.Schema ({
     },
     end: {
         type: Date
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    },
+    isRequired: {
+        type: Boolean,
+        default: false
+    },
+    sortId: {
+        type: String,
+        default: '500'
     }
 })
 

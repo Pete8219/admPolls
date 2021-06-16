@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { Input, Button , Table, Header, Form } from 'semantic-ui-react'
+import {  Header } from 'semantic-ui-react'
 import { QuestionHeader } from './QuestionHeader'
 import { Answers } from '../answers/Answers'
-import styles from '../../ControlPanel.module.css'
+
 import { useHttp } from '../../../../hooks/http.hook'
 import { useHistory } from 'react-router-dom'
 
 export const QuestionCreate = () => {
-    const quizId = localStorage.getItem('QuizId')
+   // const quizId = localStorage.getItem('QuizId')
 
     const history = useHistory()
     const { request } = useHttp()
@@ -60,7 +60,7 @@ export const QuestionCreate = () => {
         }
 
         try {
-            const fetched = await request(`/questions/add`, "POST", question, {})
+            await request(`/questions/add`, "POST", question, {})
             cancelHandler()
 
         } catch (error) {

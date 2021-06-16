@@ -28,7 +28,7 @@ export const QuizPage = () => {
 
     const saveAnswers = async () => {
         try {
-            const fetched = await request(`/answers/add`, "POST", {pollData}, {})
+             await request(`/answers/add`, "POST", {pollData}, {})
 
 
         } catch (error) {}
