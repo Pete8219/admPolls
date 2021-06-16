@@ -6,7 +6,7 @@ import {  HeldQuizesPage } from './Quizes/HeldQuizesPage'
 import { CreateQuizPage } from './Quizes/CreateQuizPage'
 import { QuestionsListPage } from './Questions/QuestionsListPage'
 import { QuestionEditPage } from './Questions/QuestionEditPage'
-import { CreateQuestion } from './components/questions/CreateQuestion'
+import { QuestionCreatePage } from './Questions/QuestionCreatePage'
 
 
 
@@ -30,7 +30,7 @@ export const useRoutes = () => {
                 <CreateQuizPage />
             </Route>
             <Route path="/admin/question/create" exact>
-                <CreateQuestion />
+                <QuestionCreatePage />
             </Route>
             <Route path="/admin/:id" exact>
                 <QuestionsListPage />

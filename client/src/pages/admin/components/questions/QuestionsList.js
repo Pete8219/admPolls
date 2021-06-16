@@ -13,7 +13,7 @@ export const QuestionsList = ( {quiz, questions} ) => {
     return (
         <>
             <Header as='h1'>Список вопросов</Header>
-            <Button color='blue' >Добавить вопрос</Button>
+            <Button color='blue' ><Link to="/admin/question/create/" style={{color:"#fff"}}> Добавить вопрос</Link></Button>
 
                 <Table celled style={{marginBottom:"5em"}}>
                     <Table.Header>
@@ -21,7 +21,9 @@ export const QuestionsList = ( {quiz, questions} ) => {
                             <Table.HeaderCell>#</Table.HeaderCell>
                             <Table.HeaderCell>Вопрос</Table.HeaderCell>
                             <Table.HeaderCell>ID</Table.HeaderCell>
-                            <Table.HeaderCell></Table.HeaderCell>
+                            <Table.HeaderCell>Активен</Table.HeaderCell>
+                            <Table.HeaderCell>Ответов</Table.HeaderCell>
+                            
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
@@ -32,9 +34,9 @@ export const QuestionsList = ( {quiz, questions} ) => {
                                 <Table.Row key = {question._id}>
                                     <Table.Cell>{index + 1}</Table.Cell>
                                     <Table.Cell style={{width:"70%"}}><Link to={`/admin/question/${question._id}`}>{question.title}</Link></Table.Cell>
-                                    {/* <Table.Cell><Link to ={`/admin/question/${question._id}`}>{question.title}</Link></Table.Cell> */}
                                     <Table.Cell><Input  value='500'/></Table.Cell>
-                                    <Table.Cell><Button color='teal'>Ответы</Button></Table.Cell>
+                                    <Table.Cell>{(question.isActive)? ` Да` : `Нет`}</Table.Cell>
+                                    <Table.Cell>{(question.answers).length}</Table.Cell>
 
                                 </Table.Row>
                             )

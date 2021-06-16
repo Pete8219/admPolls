@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useHttp } from '../../../hooks/http.hook'
 import { useParams } from 'react-router-dom'
-import { Answers } from '../components/answers/Answers'
+//import { Answers } from '../components/answers/Answers'
 import { QuestionEdit } from '../components/questions/QuestionEdit'
 
 export const QuestionEditPage = () =>  {
 
     const { id }                            = useParams()
-
     const { loading, request }              = useHttp()
-    
     const [ answers, setAnswers ]           = useState()
     const [ questionId, setQuestionId ]     = useState(id)
-    
-
-
 
     useEffect(() => {
         if(localStorage.getItem('qId')){
@@ -39,9 +34,6 @@ export const QuestionEditPage = () =>  {
         }
         fetchAnswers()
     },[request, questionId])
-
-    
-
 
     return (
         <>

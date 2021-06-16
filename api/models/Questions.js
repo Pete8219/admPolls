@@ -26,6 +26,10 @@ const questionsSchema = new mongoose.Schema({
     isRequired: {
         type: Boolean,
         default: false
+    },
+    sortID: {
+        type:  String,
+        default: '500'
     }
 
 
