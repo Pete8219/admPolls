@@ -37,13 +37,22 @@ export const QuestionsList = ( {quiz, questions} ) => {
     }
 
 
-    const changeForm = (index, e) => {
+    const changeForm = (index,id, e) => {
         
         const { name, value } = e.target
         const row = [...form]
         row[index][name] = value
         setForm(row)
         
+    }
+
+    const deleteHandler = async (id) => {
+        try {
+            await request(`/questions/${id}`, "DELETE", null, {})
+
+        } catch(e){}
+
+        setForm(form.filter(({_id: i})=> id !==i))
     }
 
 
@@ -98,6 +107,7 @@ export const QuestionsList = ( {quiz, questions} ) => {
                             <Table.HeaderCell>ID</Table.HeaderCell>
                             <Table.HeaderCell>Активен</Table.HeaderCell>
                             <Table.HeaderCell>Ответов</Table.HeaderCell>
+                            <Table.HeaderCell></Table.HeaderCell>
                             
                         </Table.Row>
                     </Table.Header>
@@ -107,12 +117,13 @@ export const QuestionsList = ( {quiz, questions} ) => {
                         {form.map((item, index) => {
                             const {_id:id} = item
                             return(
-                                <Table.Row key = {index}>
+                                <Table.Row key = {id}>
                                     <Table.Cell>{index + 1}</Table.Cell>
-                                    <Table.Cell style={{width:"70%"}}><Link to={`/admin/question/${id}`}>{item.title}</Link></Table.Cell>
-                                    <Table.Cell style={{width:"15%"}}><Input  value={item.sortID} name='sortID' onChange={(e)=> changeForm(index, e)}/></Table.Cell>
+                                    <Table.Cell style={{width:"60%"}}><Link to={`/admin/question/${id}`}>{item.title}</Link></Table.Cell>
+                                    <Table.Cell ><Input  value={item.sortID} name='sortID' onChange={(e)=> changeForm(index,id, e)}/></Table.Cell>
                                     <Table.Cell>{(item.isActive)? ` Да` : `Нет`}</Table.Cell>
                                     <Table.Cell>{(item.answers).length}</Table.Cell>
+                                    <Table.Cell><Button onClick={() => deleteHandler(id)}>Удалить</Button></Table.Cell>
 
                                 </Table.Row>
                             )

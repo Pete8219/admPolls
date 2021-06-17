@@ -6,7 +6,7 @@ import {Table, Input, Button } from 'semantic-ui-react'
 
 export const Answers = ({props}) => {
 
-    const { saveAnswers, cancelHandler, addHandler, changeHandler, form} = props
+    const { saveAnswers, cancelHandler, addHandler, changeHandler,deleteHandler, form} = props
 
     
    
@@ -21,6 +21,7 @@ export const Answers = ({props}) => {
                         <Table.HeaderCell>Ответ</Table.HeaderCell>
                         <Table.HeaderCell>Оценка</Table.HeaderCell>
                         <Table.HeaderCell>ID</Table.HeaderCell>
+                        <Table.HeaderCell></Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -33,6 +34,7 @@ export const Answers = ({props}) => {
                                 <Table.Cell style={{width:"60%"}}><Input  style={{width:"100%"}} value = {item.answer} name='answer'  onChange = {(e) => changeHandler(e,index)} /></Table.Cell>
                                 <Table.Cell><Input   value = {item.grade}  name='grade' onChange = {(e) => changeHandler(e, index)} /></Table.Cell>
                                 <Table.Cell><Input  value={item.sortId} name='sortId' onChange = {(e) => changeHandler(e, index)} /></Table.Cell>
+                                <Table.Cell><Button onClick={() => deleteHandler(index)}>Удалить</Button></Table.Cell>
                             </Table.Row>
                         )
                     }): null}

@@ -54,6 +54,11 @@ export const QuestionEdit = ({ data }) => {
         history.go(-1)
     }
 
+    const deleteHandler = (id) => {
+        //console.log(index)
+        setForm(form.filter((item, i) => id !==i))
+    }
+
     const saveAnswers = async () => {
         const questionId = localStorage.getItem('qId')
         const quizId = localStorage.getItem('QuizId')
@@ -93,7 +98,8 @@ export const QuestionEdit = ({ data }) => {
         addHandler,
         changeHandler,
         cancelHandler,
-        saveAnswers
+        saveAnswers,
+        deleteHandler
 
 
     }
