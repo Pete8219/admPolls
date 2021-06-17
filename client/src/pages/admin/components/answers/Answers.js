@@ -26,13 +26,13 @@ export const Answers = ({props}) => {
                 <Table.Body>
                     {(form) ? form.map((item, index) => {
                         
-                        const {answer, grade, sortId} = item
+                        //const {answer, grade, sortId} = item
                         return(
                             <Table.Row key = {index}>
                                 <Table.Cell>{index + 1}</Table.Cell>
-                                <Table.Cell style={{width:"60%"}}><Input  style={{width:"100%"}} value = {answer} name='answer'  onChange = {(e) => changeHandler(e,index)} /></Table.Cell>
-                                <Table.Cell><Input   value = {grade}  name='grade' onChange = {(e) => changeHandler(e, index)} /></Table.Cell>
-                                <Table.Cell><Input  value={sortId} name='sortId' onChange = {(e) => changeHandler(e, index)} /></Table.Cell>
+                                <Table.Cell style={{width:"60%"}}><Input  style={{width:"100%"}} value = {item.answer} name='answer'  onChange = {(e) => changeHandler(e,index)} /></Table.Cell>
+                                <Table.Cell><Input   value = {item.grade}  name='grade' onChange = {(e) => changeHandler(e, index)} /></Table.Cell>
+                                <Table.Cell><Input  value={item.sortId} name='sortId' onChange = {(e) => changeHandler(e, index)} /></Table.Cell>
                             </Table.Row>
                         )
                     }): null}

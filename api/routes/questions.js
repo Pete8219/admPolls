@@ -76,17 +76,14 @@ router.post("/add", async (req, res) => {
 //Update selected question
 
 router.patch("/:id", async (req, res) => {
-    
-    
     const updateOps = {}
 
     for (let key in req.body) {
         updateOps[key] = req.body[key]
     }
 
-
     try {
-        await Questions.replaceOne({ _id: req.params.id}, {...updateOps}) 
+        await Questions.updateOne({ _id: req.params.id}, {...updateOps}) 
         res.status(200).json({
             message: "Question was successfully updated"
         })

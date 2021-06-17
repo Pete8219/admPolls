@@ -7,7 +7,6 @@ import { useHttp } from '../../../../hooks/http.hook'
 
 export const QuestionsList = ( {quiz, questions} ) => {
     const { title:t, isActive:a, isRequired:r, _id:id } = quiz[0]
-    
     const history = useHistory()
     const { request } = useHttp()
 
@@ -15,12 +14,11 @@ export const QuestionsList = ( {quiz, questions} ) => {
         setForm(questions)
     },[questions]) 
 
+
     const [ form, setForm ] = useState ([])
     const [title, setTitle] = useState(t||'')
     const [isActive, setIsActive] = useState(a)
     const [isRequired, setIsRequired] = useState(r)
-    const [sortId, setSortId] = useState([])
-
 
     const cancelHandler = () => {
         history.go(-1)
@@ -38,31 +36,31 @@ export const QuestionsList = ( {quiz, questions} ) => {
         setIsRequired(!isRequired)
     }
 
-    const changeSortId = (e, id) => {
-        const sortIdArray = [...sortId]
+
+    const changeForm = (index, e) => {
         
-        sortIdArray.push
-
-        console.log(id)
-
-
+        const { name, value } = e.target
+        const row = [...form]
+        row[index][name] = value
+        setForm(row)
+        
     }
 
 
     const params = {
-        title,
-        isActive,
-        isRequired,
-        changeTitle,
-        changeActive,
-        changeRequired
+            title,
+            isActive,
+            isRequired,
+            changeTitle,
+            changeActive,
+            changeRequired
         
     }
 
     const data = {
-        title,
-        isActive,
-        isRequired,
+            title,
+            isActive,
+            isRequired,
 
     }
 
@@ -70,8 +68,19 @@ export const QuestionsList = ( {quiz, questions} ) => {
     const saveQuiz = async() => {
         try {
             await request(`/quizes/${id}`, "PATCH", data, {})
-            history.go(-1)
+
         } catch (e) {}
+
+
+        form.map(async (item) => {
+            const sortID = item.sortID
+
+            try {
+                await request(`/questions/${item._id}`, "PATCH", {sortID}, {})
+            } catch (e) {}
+        })
+        history.go(-1)
+
     }
 
     return (
@@ -98,10 +107,10 @@ export const QuestionsList = ( {quiz, questions} ) => {
                         {form.map((item, index) => {
                             const {_id:id} = item
                             return(
-                                <Table.Row key = {id}>
+                                <Table.Row key = {index}>
                                     <Table.Cell>{index + 1}</Table.Cell>
                                     <Table.Cell style={{width:"70%"}}><Link to={`/admin/question/${id}`}>{item.title}</Link></Table.Cell>
-                                    <Table.Cell style={{width:"15%"}}><Input  value={item.sortId || ''} name='sortId' onChange={(e)=> changeSortId(e, id)}/></Table.Cell>
+                                    <Table.Cell style={{width:"15%"}}><Input  value={item.sortID} name='sortID' onChange={(e)=> changeForm(index, e)}/></Table.Cell>
                                     <Table.Cell>{(item.isActive)? ` Да` : `Нет`}</Table.Cell>
                                     <Table.Cell>{(item.answers).length}</Table.Cell>
 
