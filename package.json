@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "client": "npm run start --prefix client",
-    "server": "nodemon server.js",
+    "server": "pm2 server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "PetrSavrasov",
@@ -14,10 +14,12 @@
     "bcryptjs": "^2.4.3",
     "concurrently": "^6.2.0",
     "css-loader": "^5.2.6",
+    "date-fns": "^2.22.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "mongoose": "^5.12.12",
+    "npm": "^7.17.0",
     "style-loader": "^2.0.0",
     "uuid": "^8.3.2"
   },

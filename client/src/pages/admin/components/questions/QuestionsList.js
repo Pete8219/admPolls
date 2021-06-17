@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Header, Button, Table, Input } from 'semantic-ui-react'
+import { Header, Button, Table, Input, Form } from 'semantic-ui-react'
 import { useHistory, Link } from 'react-router-dom'
 import { QuestionHeader } from '../questions/QuestionHeader'
 import { useHttp } from '../../../../hooks/http.hook'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
+import { registerLocale, setDefaultLocale  } from 'react-datepicker'
+import styles from '../../ControlPanel.module.css'
+import ru from 'date-fns/locale/ru'
 
+registerLocale('ru', ru)
 
 export const QuestionsList = ( {quiz, questions} ) => {
     const { title:t, isActive:a, isRequired:r, _id:id } = quiz[0]
@@ -12,13 +18,17 @@ export const QuestionsList = ( {quiz, questions} ) => {
 
      useEffect(() => {
         setForm(questions)
-    },[questions]) 
+    },[questions])  
 
 
     const [ form, setForm ] = useState ([])
     const [title, setTitle] = useState(t||'')
     const [isActive, setIsActive] = useState(a)
     const [isRequired, setIsRequired] = useState(r)
+    const [startDate, setStartDate] = useState(new Date())
+    const [endDate, setEndDate] = useState(new Date())
+
+    console.log(startDate)
 
     const cancelHandler = () => {
         history.go(-1)
@@ -96,6 +106,36 @@ export const QuestionsList = ( {quiz, questions} ) => {
         <>  
             <Header as='h1'>Опрос : {title}</Header>
             <QuestionHeader props={params}/>
+            <div className={styles.quizName} style={{justifyContent:"flex-start"}}>
+            <div >   
+            <Form style={{margin:"20px 0 20px 0", display:"flex", flexDirection:"row"}}>
+                <Form.Field style={{marginRight:"30px"}} >
+                    <label>Дата начала</label>
+                    <DatePicker 
+                        locale="ru"
+                        selected={startDate}
+                        showTimeSelect
+                        timeFormat="HH:mm"
+                        timeIntervals={15}
+                        timeCaption='Время'
+                        dateFormat="dd-MM-yyyy HH:mm"
+                        onChange={(date) => setStartDate(date)}/> 
+                </Form.Field>
+                <Form.Field >
+                    <label>Дата окончания</label>
+                    <DatePicker
+                     locale="ru"
+                     selected={endDate}
+                     showTimeSelect
+                     timeFormat="HH:mm"
+                     timeIntervals={15}
+                     timeCaption='Время'
+                     dateFormat="dd-MM-yyyy HH:mm"
+                     onChange={(date) => setEndDate(date)}/> 
+                </Form.Field>
+            </Form>
+            </div> 
+            </div>
             <Header as='h2'>Список вопросов</Header>
             <Button color='blue' ><Link to="/admin/question/create/" style={{color:"#fff"}}> Добавить вопрос</Link></Button>
 
