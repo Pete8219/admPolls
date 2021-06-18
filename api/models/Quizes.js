@@ -6,11 +6,13 @@ const quizesSchema = new mongoose.Schema ({
         type: String,
         required: true,
     },
-    start: {
-        type: Date
+    startDate: {
+        type: String,
+        default: new Date()
     },
-    end: {
-        type: Date
+    endDate: {
+        type: String,
+        default: new Date()
     },
     isActive: {
         type: Boolean,

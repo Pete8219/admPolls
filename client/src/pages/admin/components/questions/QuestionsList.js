@@ -12,7 +12,19 @@ import ru from 'date-fns/locale/ru'
 registerLocale('ru', ru)
 
 export const QuestionsList = ( {quiz, questions} ) => {
-    const { title:t, isActive:a, isRequired:r, _id:id } = quiz[0]
+    const { title:t, isActive:a, isRequired:r, _id:id} = quiz[0]
+    let stDate = quiz[0].startDate
+    let enDate = quiz[0].endDate
+    if(stDate === undefined) {
+        stDate = new Date().toISOString()
+    }
+    if(enDate === undefined) {
+        enDate = new Date().toISOString()
+    }
+ 
+
+    console.log(stDate,enDate)
+    
     const history = useHistory()
     const { request } = useHttp()
 
@@ -21,14 +33,17 @@ export const QuestionsList = ( {quiz, questions} ) => {
     },[questions])  
 
 
+
     const [ form, setForm ] = useState ([])
     const [title, setTitle] = useState(t||'')
     const [isActive, setIsActive] = useState(a)
     const [isRequired, setIsRequired] = useState(r)
-    const [startDate, setStartDate] = useState(new Date())
-    const [endDate, setEndDate] = useState(new Date())
+    const [startDate, setStartDate] = useState(new Date(stDate))
+    const [endDate, setEndDate] = useState(new Date(enDate))
 
-    console.log(startDate)
+    
+/*     console.log(new Date(sd))
+ */    
 
     const cancelHandler = () => {
         history.go(-1)
@@ -80,6 +95,8 @@ export const QuestionsList = ( {quiz, questions} ) => {
             title,
             isActive,
             isRequired,
+            startDate:startDate.toISOString(),
+            endDate:endDate.toISOString()
 
     }
 
