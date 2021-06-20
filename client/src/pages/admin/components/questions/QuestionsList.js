@@ -30,7 +30,7 @@ export const QuestionsList = ( {quiz, questions} ) => {
 
      useEffect(() => {
         setForm(questions)
-    },[questions])  
+    },[questions])  ;
 
 
 

@@ -6,7 +6,8 @@
   "scripts": {
     "client": "npm run start --prefix client",
     "server": "pm2 server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev1": "concurrently \"npm run server\" \"npm run client\"",
+    "dev":"pm2 start server.js"
   },
   "author": "PetrSavrasov",
   "license": "ISC",
