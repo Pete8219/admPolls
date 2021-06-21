@@ -15,37 +15,15 @@ export const CreateQuizPage = () => {
     const { request } = useHttp()
     const [title, setTitle] = useState('')
     const [isActive, setIsActive] = useState(false)
-    const [isRequired, setIsRequired] = useState(false)
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
-    const [form, setForm] = useState([])
-
-
-/*     useEffect(() => {
-        if (localStorage.getItem('Quiz')){
-            const quizData = JSON.parse(localStorage.getItem('Quiz'))
-            const {title, isActive, startDate:st, endDate: end} = quizData
-
-            console.log(st, end)
-            setTitle(title)
-            setIsActive(isActive)
-            setStartDate(new Date(st))
-            setEndDate(new Date(end))
-            
-        }
-    },[]) */
-
-
+   
     const changeTitle = (e) => {
         setTitle(e.target.value)
     }
 
     const changeActive = () => {
         setIsActive(!isActive)
-    }
-
-    const changeRequired = () => {
-        setIsRequired(!isRequired)
     }
 
     const cancelHandler = async() => {
@@ -82,39 +60,9 @@ export const CreateQuizPage = () => {
         <>
         <Header as ='h2'>Новый опрос: {title}</Header>
         <QuizHeader props = { params} />
-{/*         <div className={styles.quizName} style={{justifyContent:"flex-start"}}>
-            <div >   
-            <Form style={{margin:"20px 0 20px 0", display:"flex", flexDirection:"row"}}>
-                <Form.Field style={{marginRight:"30px"}} >
-                    <label>Дата начала</label>
-                    <DatePicker 
-                        locale="ru"
-                        selected={startDate}
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={15}
-                        timeCaption='Время'
-                        dateFormat="dd-MM-yyyy HH:mm"
-                        onChange={(date) => setStartDate(date)}/> 
-                </Form.Field>
-                <Form.Field >
-                    <label>Дата окончания</label>
-                    <DatePicker
-                     locale="ru"
-                     selected={endDate}
-                     showTimeSelect
-                     timeFormat="HH:mm"
-                     timeIntervals={15}
-                     timeCaption='Время'
-                     dateFormat="dd-MM-yyyy HH:mm"
-                     onChange={(date) => setEndDate(date)}/> 
-                </Form.Field>
-            </Form>
-            </div> 
-            </div> */}
-           
-                <Button color='green' floated='right' onClick={saveQuiz}>Сохранить</Button>
-                <Button floated ='right' color='red' onClick = {cancelHandler}>Отмена</Button>
+      
+        <Button color='green' floated='right' onClick={saveQuiz}>Сохранить</Button>
+        <Button floated ='right' color='red' onClick = {cancelHandler}>Отмена</Button>
         </>
     )
 }
