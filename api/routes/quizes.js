@@ -38,8 +38,13 @@ router.get("/:id", async (req, res) => {
 
 //Add new quiz
 router.post("/add", async (req,res) => {
+    const options = {}
+
+    for (let key in req.body) {
+        options[key] = req.body[key]
+    }
     try {
-        const quiz = new Quizes({ title: req.body.title })
+        const quiz = new Quizes({...options})
         await quiz.save()
         res.status(201).json({
             message: "Quiz successfully added"
@@ -54,6 +59,7 @@ router.post("/add", async (req,res) => {
 //Update selected quiz
 
 router.patch("/:id", async (req, res) => {
+    console.log(req.body)
     try {
         const updateOps = {}
 

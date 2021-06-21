@@ -15,6 +15,8 @@ export const QuestionsList = ( {quiz, questions} ) => {
     const { title:t, isActive:a, isRequired:r, _id:id} = quiz[0]
     let stDate = quiz[0].startDate
     let enDate = quiz[0].endDate
+
+    
     if(stDate === undefined) {
         stDate = new Date().toISOString()
     }
@@ -40,10 +42,6 @@ export const QuestionsList = ( {quiz, questions} ) => {
     const [isRequired, setIsRequired] = useState(r)
     const [startDate, setStartDate] = useState(new Date(stDate))
     const [endDate, setEndDate] = useState(new Date(enDate))
-
-    
-/*     console.log(new Date(sd))
- */    
 
     const cancelHandler = () => {
         history.go(-1)

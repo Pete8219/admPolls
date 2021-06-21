@@ -25,11 +25,7 @@ export const ControlPanelMenu = () => {
                         name='Состоявшиеся опросы'
                        />
                        </Link>
-                       <Link to = "/admin/create">
-                        <Menu.Item style={{fontSize:"1em"}}
-                        name='Создать опрос'
-                        />
-                        </Link>
+
                         
                 </Menu.Menu>
             </Menu.Item>   

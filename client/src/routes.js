@@ -21,9 +21,9 @@ if(isAuthorized) {
                 <QuizPage />
             </Route>
 
-            <Route path="/" exact>
+{/*             <Route path="/" exact>
                 <Quizes />
-            </Route>
+            </Route> */}
             <Route path="/login" exact>
                 <LoginForm />
             </Route>
@@ -42,9 +42,9 @@ if(isAuthorized) {
                 <QuizPage />
             </Route>
 
-            <Route path="/" exact>
+{/*             <Route path="/" exact>
                 <Quizes />
-            </Route>
+            </Route> */}
             <Route path="/login" exact>
                 <LoginForm />
             </Route>

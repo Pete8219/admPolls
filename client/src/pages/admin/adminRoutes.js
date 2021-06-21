@@ -1,12 +1,13 @@
 import React from 'react'
 import { Switch, Route} from "react-router-dom"
-import { QuizesList } from './components/QuizesList'
-import { QuizListActive, QuizListActivePage } from './Quizes/QuizListActivePage'
+import { QuizesAdminList } from '../admin/components/quizes/QuizesAdminList'
+import { QuizListActivePage } from './Quizes/QuizListActivePage'
 import {  HeldQuizesPage } from './Quizes/HeldQuizesPage'
 import { CreateQuizPage } from './Quizes/CreateQuizPage'
 import { QuestionsListPage } from './Questions/QuestionsListPage'
 import { QuestionEditPage } from './Questions/QuestionEditPage'
 import { QuestionCreatePage } from './Questions/QuestionCreatePage'
+import { EditQuizPage } from './Quizes/EditQuizPage'
 
 
 
@@ -18,7 +19,7 @@ export const useRoutes = () => {
         <Switch>
 
             <Route path="/admin" exact>
-                <QuizesList />
+                <QuizesAdminList />
             </Route>
             <Route path="/admin/active" exact>
                 <QuizListActivePage />
@@ -33,7 +34,7 @@ export const useRoutes = () => {
                 <QuestionCreatePage />
             </Route>
             <Route path="/admin/:id" exact>
-                <QuestionsListPage />
+                <EditQuizPage />
             </Route>
             <Route path="/admin/question/:id" exact>
                 <QuestionEditPage />
