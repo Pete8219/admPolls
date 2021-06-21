@@ -12,6 +12,7 @@ export const EditQuizPage = () => {
     const { loading, request }  = useHttp()
     const [quizId, setQuizId]   = useState(id) 
     const [quiz, setQuiz]       = useState()
+    const [questions, setQuestions] = useState()
 
     useEffect(() => {
         if(localStorage.getItem('QuizId')){
@@ -38,10 +39,19 @@ export const EditQuizPage = () => {
         fetchQuiz()
     },[quizId, request])
 
+    useEffect(() => {
+        const FetchQuestions = async() => {
+            const fetched = await request(`/questions/byQuize/${quizId}`, "GET", null, {})
+            setQuestions(fetched)
+        }
+        FetchQuestions()
+
+    },[quizId, request])
+
     return (
         <>
             
-            {!loading && quiz && <QuizEdit data={quiz}/>}
+            {!loading && quiz && questions && <QuizEdit data={quiz} questionsData={questions}/>}
         </>
     )
 }
