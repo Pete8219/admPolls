@@ -4,14 +4,10 @@ import { QuizesAdminList } from '../admin/components/quizes/QuizesAdminList'
 import { QuizListActivePage } from './Quizes/QuizListActivePage'
 import {  HeldQuizesPage } from './Quizes/HeldQuizesPage'
 import { CreateQuizPage } from './Quizes/CreateQuizPage'
-import { QuestionsListPage } from './Questions/QuestionsListPage'
+
 import { QuestionEditPage } from './Questions/QuestionEditPage'
 import { QuestionCreatePage } from './Questions/QuestionCreatePage'
 import { EditQuizPage } from './Quizes/EditQuizPage'
-
-
-
-
 
 
 export const useRoutes = () => {

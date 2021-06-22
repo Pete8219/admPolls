@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 
 export const QuizesAdminList = () => {
-    //const {isActive:a} = props
+    
     const { request } = useHttp()
     
     localStorage.clear()

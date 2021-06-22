@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Header, Button, Table, Input, Form } from 'semantic-ui-react'
 import { useHistory, Link } from 'react-router-dom'
-import { QuestionHeader } from '../questions/QuestionHeader'
+import { QuestionHeader } from './QuestionHeader'
 import { useHttp } from '../../../../hooks/http.hook'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"

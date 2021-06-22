@@ -4,15 +4,13 @@ import styles from '../../ControlPanel.module.css'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 import { registerLocale} from 'react-datepicker'
-//import styles from '../../ControlPanel.module.css'
 import ru from 'date-fns/locale/ru'
 
 registerLocale('ru', ru)
 
 
 export const QuizHeader = ({props}) => {
-    console.log(props)
-
+    
     const {title, isActive, changeTitle, changeActive,startDate, setStartDate, endDate, setEndDate} = props
     return (
         <>
