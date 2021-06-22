@@ -7,14 +7,14 @@ import { useHttp } from '../../../../hooks/http.hook'
 import { useHistory } from 'react-router-dom'
 
 export const QuestionCreate = () => {
-   // const quizId = localStorage.getItem('QuizId')
-
+   
     const history = useHistory()
     const { request } = useHttp()
     const [title, setTitle] = useState('')
     const [isActive, setIsActive] = useState()
     const [isRequired, setIsRequired] = useState()
     const [ form, setForm ] = useState ([])
+    const [value, setValue] = useState('Radio')
 
 
 
@@ -42,6 +42,10 @@ export const QuestionCreate = () => {
         setForm(newArray)
     } 
 
+    const handleChange = (e, {value}) => {
+        setValue ( value )
+    }
+
     const cancelHandler = () => {
         history.go(-1)
     }
@@ -55,6 +59,7 @@ export const QuestionCreate = () => {
             title,
             answers: form,
             quizeId: quizId,
+            answerType: value,
             isActive,
             isRequired
         }
@@ -81,7 +86,8 @@ export const QuestionCreate = () => {
         addHandler,
         changeHandler,
         cancelHandler,
-        saveAnswers
+        saveAnswers,
+        handleChange
 
 
     }

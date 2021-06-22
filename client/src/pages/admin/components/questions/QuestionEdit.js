@@ -12,7 +12,9 @@ export const QuestionEdit = ({ data }) => {
     const history = useHistory()
     const { request } = useHttp()
 
-    const {title: t, isActive: a, isRequired: r, answers, sortId: s} = data[0]
+    const {title: t, isActive: a, isRequired: r, answers, sortId: s, answerType} = data[0]
+
+ 
 
     answers.sort((a,b) => a.sortId - b.sortId)
 
@@ -21,14 +23,15 @@ export const QuestionEdit = ({ data }) => {
     const [isRequired, setIsRequired] = useState(r)
     const [ form, setForm ] = useState (answers)
     const [sortId, setSortId] = useState(s)
+    const [value, setValue] = useState(answerType)
 
     const changeTitle = (e) => {
         setTitle(e.target.value)
     }
 
-    const changeSortId = (e) => {
+/*     const changeSortId = (e) => {
         setSortId(e.target.value)
-    }
+    } */
 
     const changeActive = () => {
         setIsActive(!isActive)
@@ -48,25 +51,31 @@ export const QuestionEdit = ({ data }) => {
         const newArray = [...form]
         newArray[index][name] = value
         setForm(newArray)
-    } 
+    }
+    
+    const handleChange = (e, {value}) => {
+        setValue ( value )
+    }
 
     const cancelHandler = () => {
         history.go(-1)
     }
 
     const deleteHandler = (id) => {
-        //console.log(index)
+        
         setForm(form.filter((item, i) => id !==i))
     }
 
     const saveAnswers = async () => {
         const questionId = localStorage.getItem('qId')
-        const quizId = localStorage.getItem('QuizId')
         
+        const quizId = localStorage.getItem('QuizId')
+        console.log(quizId)
 
         const question = {
             title,
             answers: form,
+            answerType: value,
             quizeId: quizId,
             id: questionId,
             sortId,
@@ -88,18 +97,20 @@ export const QuestionEdit = ({ data }) => {
     const params = {
         title: title || '',
         form: form || '',
+        value,
         isActive,
         isRequired,
-        sortId: sortId || '',
+        //sortId: sortId || '',
         changeActive,
         changeRequired,
         changeTitle,
-        changeSortId,
+        //changeSortId,
         addHandler,
         changeHandler,
         cancelHandler,
         saveAnswers,
-        deleteHandler
+        deleteHandler,
+        handleChange
 
 
     }

@@ -6,7 +6,7 @@ import {Table, Input, Button } from 'semantic-ui-react'
 
 export const Answers = ({props}) => {
 
-    const { saveAnswers, cancelHandler, addHandler, changeHandler,deleteHandler, form} = props
+    const { saveAnswers, cancelHandler, addHandler, changeHandler, deleteHandler, form} = props
 
     
    

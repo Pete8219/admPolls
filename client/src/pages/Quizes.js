@@ -27,7 +27,7 @@ export const Quizes = () => {
             id,
             title
         }
-        localStorage.setItem("QuizId", JSON.stringify(data))
+        localStorage.setItem("activeQuiz", JSON.stringify(data))
         history.push("/quiz")
     }
 

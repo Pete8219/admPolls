@@ -4,6 +4,8 @@ import { Quizes } from './pages/Quizes'
 import { QuizPage } from './pages/QuizPage'
 import { ControlPanel } from './pages/admin/ControlPanel'
 import { LoginForm } from './pages/admin/pages/LoginForm'
+import { QuizesPage } from './pages/front/pages/quizes/QuizesPage'
+import { SelectedQuizPage } from './pages/front/pages/quizes/SelectedQuizPage'
 
 const isAuthorized = true
 
@@ -15,10 +17,13 @@ if(isAuthorized) {
                 <ControlPanel />
             </Route> 
             <Route path="/" exact>
-                <Quizes />
+                <QuizesPage />
             </Route>
-            <Route path="/quiz" exact>
+{/*             <Route path="/quiz" exact>
                 <QuizPage />
+            </Route> */}
+            <Route path="/quiz" exact>
+                <SelectedQuizPage />
             </Route>
 
 {/*             <Route path="/" exact>
@@ -35,8 +40,11 @@ if(isAuthorized) {
 } else {
     return (
         <Switch>
-            <Route path="/" exact>
+{/*             <Route path="/" exact>
                 <Quizes />
+            </Route> */}
+            <Route path="/" exact>
+                <QuizesPage />
             </Route>
             <Route path="/quiz" exact>
                 <QuizPage />
