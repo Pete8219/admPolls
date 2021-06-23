@@ -6,6 +6,9 @@ const quizesSchema = new mongoose.Schema ({
         type: String,
         required: true,
     },
+    description:{
+        type: String
+    },
     startDate: {
         type: String,
         default: new Date()

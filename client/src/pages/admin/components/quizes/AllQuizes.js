@@ -3,8 +3,8 @@ import { Table, Header, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
-export const AllQuizes = ({quizes, filter}) => {
-    console.log(filter)
+export const AllQuizes = ({quizes}) => {
+    
 
     return (
         <>

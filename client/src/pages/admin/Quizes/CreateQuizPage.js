@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import DatePicker from 'react-datepicker'
-import { Header, Form, Button, Table, Input } from 'semantic-ui-react'
+import {  useHistory } from 'react-router-dom'
+
+import { Header,  Button } from 'semantic-ui-react'
 import { QuizHeader } from '../components/quizes/QuizHeader'
 import styles from '../ControlPanel.module.css'
 import { registerLocale, setDefaultLocale  } from 'react-datepicker'
@@ -14,12 +14,17 @@ export const CreateQuizPage = () => {
     const history = useHistory()
     const { request } = useHttp()
     const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
     const [isActive, setIsActive] = useState(false)
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
    
     const changeTitle = (e) => {
         setTitle(e.target.value)
+    }
+
+    const changeDescription = (e) => {
+        setDescription(e.target.value)
     }
 
     const changeActive = () => {
@@ -33,6 +38,8 @@ export const CreateQuizPage = () => {
     const params = {
         title,
         changeTitle,
+        description,
+        changeDescription,
         isActive,
         changeActive,
         startDate,
@@ -43,6 +50,7 @@ export const CreateQuizPage = () => {
 
     const data = {
         title,
+        description,
         isActive,
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString()

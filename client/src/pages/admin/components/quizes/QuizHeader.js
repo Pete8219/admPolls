@@ -11,15 +11,23 @@ registerLocale('ru', ru)
 
 export const QuizHeader = ({props}) => {
     
-    const {title, isActive, changeTitle, changeActive,startDate, setStartDate, endDate, setEndDate} = props
+    const {title, description, isActive, changeTitle, changeDescription, changeActive,startDate, setStartDate, endDate, setEndDate} = props
     return (
         <>
          <div className={styles.quizName}>
             <Form style={{margin:"20px 0 20px 0"}}>
-            <Form.Field inline>
+            <Form.Field>
                 <label>Наименование</label>
                 <Input className={styles.quizName__input}  value={title}  name='title'  onChange = {(e) => changeTitle(e) }  />
             </Form.Field>
+            <Form.Field>
+            <Form.TextArea 
+                label = "Подробное описание опроса"
+                value = {description}
+                onChange = {(e) => changeDescription(e)}
+            />
+            </Form.Field>
+                
             <Form.Field>
                 <Checkbox label='Активен' checked={isActive} name='isActive' onChange={changeActive}/>
             </Form.Field>

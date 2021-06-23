@@ -10,11 +10,12 @@ import { useHttp } from '../../../../hooks/http.hook'
 export const QuizEdit = ({data, questionsData}) => {
     
     const { request } = useHttp()
-    const { title: t, isActive: a, startDate: start, endDate: end, _id } = data[0]
+    const { title: t, description:d, isActive: a, startDate: start, endDate: end, _id } = data[0]
     
     const history = useHistory()
     
     const [title, setTitle]         = useState(t)
+    const [description, setDescription] = useState(d||'')
     const [isActive, setIsActive]   = useState(a || false)
     const [startDate, setStartDate] = useState(new Date(start))
     const [endDate, setEndDate]     = useState(new Date(end))
@@ -23,6 +24,11 @@ export const QuizEdit = ({data, questionsData}) => {
     const changeTitle = (event) => {
         const { value } = event.target
         setTitle(value)
+    }
+
+    const changeDescription = (e) => {
+        const { value } = e.target
+        setDescription(value)
     }
 
     const changeActive = () => {
@@ -51,13 +57,15 @@ export const QuizEdit = ({data, questionsData}) => {
 
     const headerParams = {
         title: title,
+        description: description,
         isActive,
         startDate,
         setStartDate,
         endDate,
         setEndDate,
         changeTitle,
-        changeActive
+        changeActive,
+        changeDescription
 }
 
     const questionsParams = {
@@ -68,6 +76,7 @@ export const QuizEdit = ({data, questionsData}) => {
 
     const QuizData = {
         title,
+        description,
         isActive,
         startDate:startDate.toISOString(),
         endDate:endDate.toISOString()

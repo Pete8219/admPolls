@@ -7,7 +7,7 @@ import { useHttp } from '../../../hooks/http.hook'
 
 export const EditQuizPage = () => {
 
-    const  {id}       = useParams()
+    const  {id}                 = useParams()
 
     const { loading, request }  = useHttp()
     const [quizId, setQuizId]   = useState(id) 
