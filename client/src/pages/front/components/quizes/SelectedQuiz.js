@@ -12,12 +12,23 @@ export const  SelectedQuiz = ({ props }) => {
     const [score, setScore ]    = useState(questions.length)
     const [counter, setCounter] = useState(0)
     const [finish, setFinish]   = useState(false)
+    const [results, setResults] = useState([])
     
 
    
     const changeCounter = () => {
         setCounter (counter + 1)
         
+    }
+
+    const handleChange = (e , data) => {
+
+        console.log(e.target.outerText)
+
+        /* console.log(questions[counter].title)
+        const answersArray = [...results]
+        answersArray.push({answer: value, title: questions[counter].title})
+        setResults(answersArray) */
     }
 
     return (
@@ -38,7 +49,7 @@ export const  SelectedQuiz = ({ props }) => {
                     <div>
             
                     <QuestionCounter props = { {score, counter, questions} }  />
-                    <Question props={ questions[counter] } count ={counter} score = {score} changeCounter={changeCounter}/>
+                    <Question props={ questions[counter] } data ={results} changeCounter={changeCounter} handleChange={handleChange}/>
                     </div>
             }
 

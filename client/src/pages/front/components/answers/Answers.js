@@ -3,13 +3,9 @@ import {Form, Checkbox, Dropdown, Container } from 'semantic-ui-react'
 import styles from './styles.module.css'
 
 
-export const Answers = ({answers}) => {
-
-    const { answerType } = answers
-
-
-
-    console.log(answers)
+export const Answers = ({answers, data, handleChange}) => {
+    const { title, answerType } = answers
+    console.log(title)
 
     const options = []
 
@@ -24,9 +20,10 @@ export const Answers = ({answers}) => {
             <Form className={styles.formAnswers}>
             <Dropdown 
                 options = {options}
+                onChange = {handleChange}
                 placeholder = 'Choosee an option'
                 selection
-                //value = { value }
+                
             />
             </Form>
         )
@@ -43,6 +40,7 @@ export const Answers = ({answers}) => {
                           <Checkbox style={{color:"#000"}}
                             
                             label = {option.value}
+                            onChange = {handleChange}
                             
                           />
                       </Form.Field>  
