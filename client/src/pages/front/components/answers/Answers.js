@@ -1,11 +1,13 @@
 import React from 'react'
 import {Form, Checkbox, Dropdown, Container } from 'semantic-ui-react'
 import styles from './styles.module.css'
+import { v4 as uuidv4 } from 'uuid'
 
 
-export const Answers = ({answers, data, handleChange}) => {
+export const Answers = ({answers,  handleChange}) => {
     const { title, answerType } = answers
-    console.log(title)
+    //const uid = uuidv4();
+    //console.log(title)
 
     const options = []
 
@@ -15,13 +17,18 @@ export const Answers = ({answers, data, handleChange}) => {
         )
     })
 
+    
+
+    
+
     if(answerType === 'DropDown') {
         return (
             <Form className={styles.formAnswers}>
             <Dropdown 
+                type='dropdown'
                 options = {options}
                 onChange = {handleChange}
-                placeholder = 'Choosee an option'
+                placeholder = 'Choose an option'
                 selection
                 
             />
@@ -34,13 +41,16 @@ export const Answers = ({answers, data, handleChange}) => {
             
             <Form className={styles.formAnswers}>
                 
-                {options.map((option, i) => {
+                {
+                
+                options.map((option, i) => {
                     return(
                       <Form.Field key = {i}>
                           <Checkbox style={{color:"#000"}}
-                            
+                            id = {i}
                             label = {option.value}
                             onChange = {handleChange}
+                            /* checked= {checked} */
                             
                           />
                       </Form.Field>  
