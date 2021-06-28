@@ -4,7 +4,7 @@ import { QuestionCounter } from '../questions/QuestionCounter'
 import { Question } from '../questions/Question'
 import { Button, Container, Message } from 'semantic-ui-react'
 import styles from '../../styles.module.css'
-import { getDayOfYear } from 'date-fns'
+
 
 
 export const  SelectedQuiz = ({ props }) => {
@@ -12,54 +12,69 @@ export const  SelectedQuiz = ({ props }) => {
 
     const [score, setScore ]    = useState(questions.length)
     const [counter, setCounter] = useState(0)
-    //const [finish, setFinish] = useState(false)
     const [results, setResults] = useState([])
-    const [checked, setChecked] = useState(false)
-    const [question, setQuestion] = useState(questions[0])
-    
+    //const [checked, setChecked] = useState(true)
+    const [question, setQuestion] = useState(questions[counter])
+
+  
 
     useEffect(() => {
             setQuestion(questions[counter])
-    },[counter])
-
-    console.log(question)
+            
+            
+    },[counter,questions])
 
    
     const changeCounter = () => {
         setCounter (counter + 1)
-        setChecked(false)
+ 
+    }
+
+    const selectionOption = (e, data) => {
+        const answer = {}
+        //setResults([])
+        const result = [...results]
+        answer.title = question.title
+        answer.select = data.value
+        result.push(answer)
         
     }
 
-    const handleChange = (e , data) => {
-       // setChecked(!checked)
-        
-        const obj = {}
-        if(data.type === 'dropdown') {
-             obj.answer = data.value
-             obj.title = questions[counter].title
-            // const dropdownArray = [...results]
-             //dropdownArray.push
+    if(question.answerType === 'DropDown') {
+        console.log(`${question.answerType}`+`AnswersComponent`)
+    }
+    if(question.answerType === 'Radio') {
+        console.log(`${question.answerType}`+`AnswersComponent`)
+    }
 
-        }else {
-            
-            if(data.type === "checkbox" && data.checked === true) {
-                console.log(data)
-                const checkboxArray = [...results]
-                checkboxArray.push({id: data.id, answer: data.label, title: questions[counter].title})
-                setResults(checkboxArray)
-            }else {
-                if(data.type === "checkbox" && data.checked === false) {
-                    console.log(data)
-                const checkboxArray = [...results]
-                const arr = checkboxArray.filter(item => item.id !== data.id)
-                setResults(arr)
-                }
-            }
-
-            }
     
+    const handleChange = (e , data) => {
+        if(data.type === 'dropdown') {
+            console.log('dropdown')
         }
+
+        if(data.type==='checkbox') {
+            console.log('checkbox')
+
+
+            if(data.checked === true) {
+                console.log('checked')
+                const  checks = [...results]
+                checks.push({title: question.title, answer: data.label, id: data.id})
+                setResults(checks)
+    
+            }else {
+                console.log('unchecked')
+                const checks = [...results]
+                const arr = checks.filter(item => item.id !== data.id)
+                setResults(arr)
+    
+            }
+        }
+        
+
+    
+    }
 
     
 
@@ -81,7 +96,7 @@ export const  SelectedQuiz = ({ props }) => {
                     <div>
             
                     <QuestionCounter props = { {score, counter, questions} }  />
-                    <Question props={ question }  changeCounter={changeCounter} handleChange={handleChange} />
+                    <Question props={ question } counter={counter} changeCounter={changeCounter} handleChange={handleChange} select={selectionOption} />
                     </div>
             }
 
