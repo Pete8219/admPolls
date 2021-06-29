@@ -13,8 +13,10 @@ const components = {
    
 }
 
-export const Answers = ({answers, counter, handleChange}) => {
-    const {  answerType } = answers
+export const Answers = ({answers, counter, handleChange, onClick}) => {
+
+    
+    const {  title, answerType } = answers
     const options = []
 
     answers.answers.map((item, i) =>  {
@@ -28,6 +30,6 @@ export const Answers = ({answers, counter, handleChange}) => {
 
 
     const SpecificComponent = components[answerType]
-    return <SpecificComponent props ={{options, handleChange, counter}}/>
+    return <SpecificComponent props ={{options, title, handleChange, counter, onClick}}/>
 
 }

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { Checkbox, Form } from 'semantic-ui-react'
+import { Checkbox, Form, Button } from 'semantic-ui-react'
 import styles from './styles.module.css'
 
 
 export const RadioType = ({props}) => {
 
-    const { options, /* handleChange, */ counter } = props
+    const { options, /* handleChange, */ counter, onClick } = props
 
 
     const [val, setVal] = useState('')
@@ -15,6 +15,7 @@ export const RadioType = ({props}) => {
     }
 
     return (
+        <>
         <Form className={styles.formAnswers}>
             
             {
@@ -35,6 +36,11 @@ export const RadioType = ({props}) => {
                    </Form.Field>
                 )
             })}
+            
         </Form>
+        <div>
+                <Button color = 'green' floated='right' onClick={onClick}>Ответить</Button>
+            </div>
+        </>
     )
 }

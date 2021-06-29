@@ -12,8 +12,8 @@ export const Question = ({props, counter, changeCounter, handleChange}) => {
     return (
         <>
             <Container className={styles.containerQuestion}>
-                <Answers answers={props} counter={counter} handleChange={handleChange}/>
-                <Button color = 'green' floated='right' onClick={changeCounter}>Ответить</Button>
+                <Answers answers={props} counter={counter} handleChange={handleChange} onClick={changeCounter}/>
+                
                          
             </Container>
         </>
