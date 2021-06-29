@@ -5,14 +5,14 @@ import { Container, Button } from 'semantic-ui-react'
 import styles from '../../styles.module.css'
 
 
-export const Question = ({props, counter, changeCounter, handleChange, select}) => {
+export const Question = ({props, counter, changeCounter, handleChange}) => {
     
 
 
     return (
         <>
             <Container className={styles.containerQuestion}>
-                <Answers answers={props} counter={counter} handleChange={handleChange} handleSelect={select}/>
+                <Answers answers={props} counter={counter} handleChange={handleChange}/>
                 <Button color = 'green' floated='right' onClick={changeCounter}>Ответить</Button>
                          
             </Container>

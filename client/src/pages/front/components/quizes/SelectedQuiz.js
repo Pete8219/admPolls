@@ -32,7 +32,7 @@ export const  SelectedQuiz = ({ props }) => {
 
     const selectionOption = (e, data) => {
         const answer = {}
-        //setResults([])
+        
         const result = [...results]
         answer.title = question.title
         answer.select = data.value
@@ -40,23 +40,10 @@ export const  SelectedQuiz = ({ props }) => {
         
     }
 
-    if(question.answerType === 'DropDown') {
-        console.log(`${question.answerType}`+`AnswersComponent`)
-    }
-    if(question.answerType === 'Radio') {
-        console.log(`${question.answerType}`+`AnswersComponent`)
-    }
-
-    
     const handleChange = (e , data) => {
-        if(data.type === 'dropdown') {
-            console.log('dropdown')
-        }
 
         if(data.type==='checkbox') {
-            console.log('checkbox')
-
-
+            
             if(data.checked === true) {
                 console.log('checked')
                 const  checks = [...results]
@@ -71,9 +58,7 @@ export const  SelectedQuiz = ({ props }) => {
     
             }
         }
-        
 
-    
     }
 
     
@@ -96,7 +81,7 @@ export const  SelectedQuiz = ({ props }) => {
                     <div>
             
                     <QuestionCounter props = { {score, counter, questions} }  />
-                    <Question props={ question } counter={counter} changeCounter={changeCounter} handleChange={handleChange} select={selectionOption} />
+                    <Question props={ question } counter={counter} changeCounter={changeCounter} handleChange={handleChange} />
                     </div>
             }
 

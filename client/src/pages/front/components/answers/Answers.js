@@ -1,14 +1,20 @@
 import React from 'react'
 import {Form, Checkbox, Dropdown } from 'semantic-ui-react'
 import styles from './styles.module.css'
-//import { v4 as uuidv4 } from 'uuid'
+import { DropDownType } from './DropDownType'
+import { RadioType } from './RadioType'
+import { CheckboxType } from './CheckboxType'
 
 
-export const Answers = ({answers, counter, handleChange,  handleSelect }) => {
+const components = {
+    DropDown: DropDownType,
+    Radio : RadioType,
+    Checkbox : CheckboxType
+   
+}
+
+export const Answers = ({answers, counter, handleChange}) => {
     const {  answerType } = answers
-    //const uid = uuidv4();
-
-
     const options = []
 
     answers.answers.map((item, i) =>  {
@@ -20,48 +26,8 @@ export const Answers = ({answers, counter, handleChange,  handleSelect }) => {
         
     })
 
-    
 
-    
-
-    if(answerType === 'DropDown') {
-        return (
-            <Form className={styles.formAnswers}>
-            <Dropdown 
-                type='dropdown'
-                options = {options}
-                onChange = {handleChange}
-                placeholder = 'Choose an option'
-                selection
-                
-            />
-            </Form>
-        )
-
-    }else {
-        
-        return (
-            <Form className={styles.formAnswers}>
-                
-                {
-                
-                options.map((option, i) => {
-                    const key = `${counter}` + `${i}`
-                    return(
-                        
-                       <Form.Field key = {key}>
-                         <Checkbox style={{color:"#000"}}
-                            id = {key}
-                            label = {option.value}
-                            onChange = {handleChange}
-                           
-                            
-                          />
-                       </Form.Field>
-                    )
-                })}
-            </Form>
-        )
-    }
+    const SpecificComponent = components[answerType]
+    return <SpecificComponent props ={{options, handleChange, counter}}/>
 
 }
